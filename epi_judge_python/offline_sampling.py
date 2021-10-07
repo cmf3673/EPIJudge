@@ -1,16 +1,20 @@
 import functools
 from typing import List
-
+from random import randint
 from test_framework import generic_test
 from test_framework.random_sequence_checker import (
     binomial_coefficient, check_sequence_is_uniformly_random,
     compute_combination_idx, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
 
-
+# time: O(k)
+# space: O(1)
 def random_sampling(k: int, A: List[int]) -> None:
-    # TODO - you fill in here.
-    return
+    n = len(A)
+    for i in range(k):
+        r = randint(i, n - 1)
+        A[i], A[r] = A[r], A[i]
+    return A[:k]
 
 
 @enable_executor_hook
